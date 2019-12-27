@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+        <meta charset="UTF-8"/>
+        <title>Administration</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    
+<div class="container-fluid">
+    <!------header------------->
+    <div class="header col-lg-12 col-md-12 col-sm-12">
+        <div class="row">
+            <div id="trangchu" class="col-md-11 col-sm-11">
+                <a href="#"><i class="fas fa-home"></i> Trở lại trang mua sắm</a>
+            </div>
+            <div class="dangxuat col-md-1 col-sm-1 text-right" id="dang-xuat">
+                Đăng xuất
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!------------nav----------------->
+
+        <div class="nav col-md-3 col-sm-12 col-12 col-xs-12">
+            <ul>
+                <li><a href="../index.html"><i class="fa fa-chart-line"></i> Dashboard</a></li>
+                <li><a href="TaiKhoan.html"><i class="fa fa-users"></i> Tài khoản</a></li>
+                <li><a href="LoaiSanPham.html"><i class="fa fa-clipboard-list"></i> Loại sản phẩm</a></li>
+                <li><a href="HangSanPham.html"><i class="fa fa-building"></i> Hãng sản phẩm</a></li>
+                <li><a href="SanPham.html"><i class="fas fa-gift"></i> Sản phẩm</a></li>
+                <li><a href="DonHang.html"><i class="fa fa-cart-arrow-down"></i> Đơn hàng</a></li>
+            </ul>
+            <div class="dropdown themmoi">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sản phẩm mới</button>
+                <form id="form-them-san-pham" method="post" name="main-form" id="main-form" enctype="multipart/form-data" accept-charset="utf-8" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <div class="form-group">
+                        <span>Tên sản phẩm </span>
+                        <input type="text" name="tenSanPham" class="form-control" id="tenSanPham" placeholder="Tên sản phẩm">
+                    </div>
+                    <div class="form-group">
+                        <span>Hình ảnh sản phẩm </span>
+                        <input type="file" name="file-upload" id="file-upload" />
+                    </div>
+
+                    <div class="form-group">
+                        <span>Hãng sản xuất </span>
+                        <select class="custom-select" name="hangSanXuat">
+                            <option value="1">cayxinh.vn</option>
+                            <option value="2">thienduongcayxanh.vn</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span>Loại sản phẩm </span>
+                        <select class="custom-select" name="loaiSanPham">
+                            <option value="2">Sen đá</option>
+                            <option value="3">Xương rồng</option>
+                            <option value="1">Tiểu cảnh</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span>Giá sản phẩm </span>
+                        <input type="text" name="giaSanPham" class="form-control" id="giaSanPham" placeholder="Giá sản phẩm">
+                    </div>
+                    <div class="form-group">
+                        <span>Số lượng</span>
+                        <input type="text" name="soLuong" class="form-control" id="soLuong" placeholder="Số lượng">
+                    </div>
+                    <div class="form-group">
+                        <span>Mô tả </span>
+                        <input type="text" name="moTa" class="form-control" id="moTa" placeholder="Mô tả">
+                    </div>
+                    <button type="submit" id="themSanPham" class="btn btn-success">Thêm</button>
+                </form>
+            </div>
+        </div>
+
+        <!-----------------content--------------------->
+
+        <div class="content col-md-9 col-sm-12 col-12 col-xs-12">
+            <h2>Danh sách sản phẩm</h2>
+
+            <p>
+            <form method="POST" id="formSearchPost" onsubmit="return false;">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="kw_search_post" placeholder="Nhập tên sản phẩm...">
+                    <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+                </span>
+                </div>
+            </form>
+            </p>
+            <div class="table-responsive">
+                <table class="table table-hover table table-striped list">
+                    <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">STT</th>
+                        <th scope="col">Tên sản phẩm</th>
+                        <th scope="col" class="HinhSP">Hình ảnh</th>
+                        <th scope="col">Giá(VNĐ)</th>
+                        <th scope="col">Lượt xem</th>
+                        <th scope="col">Số lượng tồn</th>
+                        <th scope="col">Số lượng bán</th>
+                        <th scope="col">Ngày nhập</th>
+                        <th scope="col">chức năng</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <form method="post" name="main-form" id="main-form" enctype="multipart/form-data" accept-charset="utf-8">
+                                <input type="hidden" name="maSanPhamDel" id="maSanPhamDel" value="'.$loadSP->MaSanPham.'">
+                                <button id="Xoa" type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                            </form>
+                        </td>
+                        <td>1</td>
+                        <td><a>Sen đá hàn quốc</a></td>
+                        <td><img src="../image/sen-đá-hàn-quốc-300x300.jpg" alt="Card image cap" class="thumbnail img-responsive"></td>
+                        <td>75000</td>
+                        <td>10</td>
+                        <td>20</td>
+                        <td>5</td>
+                        <td>2018-1-2</td>
+                        <td>
+                            <div class="dropdown chinhsua">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Chỉnh sửa</button>
+                                <form id="form-chinh-sua-san-pham" method="post" name="main-form" id="main-form" enctype="multipart/form-data" accept-charset="utf-8" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <div class="form-group">
+                                        <input type="hidden" name="maSanPhamEdit" id="maSanPhamEdit" value="1">
+                                    </div>
+                                    <div class="form-group">
+                                        <span>Tên sản phẩm</span>
+                                        <input type="text" name="tenSanPhamEdit" class="form-control" id="tenHangSanPhamEdit" value="Sen đá hàn quốc">
+                                    </div>
+                                    <div class="form-group">
+                                        <span>Hình ảnh sản phẩm</span>
+                                        <input type="file" name="file-upload" id="file-upload" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <span>Giá</span>
+                                        <input type="text" name="giaSanPhamEdit" class="form-control" id="giaSanPhamEdit" value="75000">
+                                    </div>
+                                    <div class="form-group">
+                                        <span>Số lượng tồn</span>
+                                        <input type="text" name="soLuongTonEdit" class="form-control" id="soLuongTonEdit" value="20">
+                                    </div>
+                                    <div class="form-group">
+                                        <span>Số lượt xem</span>
+                                        <input type="text" name="soLuotXemEdit" class="form-control" id="soLuotXemEdit" value="10">
+                                    </div>
+                                    <div class="form-group">
+                                        <span>Số lượng bán</span>
+                                        <input type="text" name="soLuongBanEdit" class="form-control" id="soLuongBanEdit" value="5">
+                                    </div>
+                                    <div class="form-group">
+                                        <span>Ngày nhập</span>
+                                        <input type="text" name="ngayNhapEdit" class="form-control" id="ngayNhapEdit" value="2018-1-2">
+                                    </div>
+                                    <button type="submit" id="chinhSua" class="btn btn-success">Chỉnh sửa</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <footer role="contentinfo">
+        <p>Nhóm 12: 1660063 - 1660127 - 1660151 caycanhstore &copy; 2018</p>
+    </footer>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="../js/admin.js" type="text/javascript" charset="utf-8" async defer></script>
+<script src="../js/chart.js" type="text/javascript" charset="utf-8" async defer></script>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+        <meta charset="UTF-8"/>
+        <title>Administration</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    
+<div class="container-fluid">
+    <!------header------------->
+    <div class="header col-lg-12 col-md-12 col-sm-12">
+        <div class="row">
+            <div id="trangchu" class="col-md-11 col-sm-11">
+                <a href="#"><i class="fas fa-home"></i> Trở lại trang mua sắm</a>
+            </div>
+            <div class="dangxuat col-md-1 col-sm-1 text-right" id="dang-xuat">
+                Đăng xuất
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!------------nav----------------->
+
+        <div class="nav col-md-3 col-sm-12 col-12 col-xs-12">
+            <ul>
+                <li><a href="index.html"><i class="fa fa-chart-line"></i> Dashboard</a></li>
+                <li><a href="pages/TaiKhoan.html"><i class="fa fa-users"></i> Tài khoản</a></li>
+                <li><a href="pages/LoaiSanPham.html"><i class="fa fa-clipboard-list"></i> Loại sản phẩm</a></li>
+                <li><a href="pages/HangSanPham.html"><i class="fa fa-building"></i> Hãng sản phẩm</a></li>
+                <li><a href="pages/SanPham.html"><i class="fas fa-gift"></i> Sản phẩm</a></li>
+                <li><a href="pages/DonHang.htm"><i class="fa fa-cart-arrow-down"></i> Đơn hàng</a></li>
+            </ul>
+        </div>
+
+        <!-----------------content--------------------->
+
+        <div class="content col-md-9 col-sm-12 col-12 col-xs-12">
+            <h1>Dashboard</h1>
+            <h6>Bảng thống kê chung</h6>
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                    <th scope="col">Tổng số tài khoản đã đăng ký</th>
+                    <th scope="col">Tổng số hãng sản phẩm</th>
+                    <th scope="col">Tổng số loại sản phẩm</th>
+                    <th scope="col">Tổng số sản phẩm hiện có</th>
+                    <th scope="col">Tổng số lượt xem</th>
+                    <th scope="col">Tổng số lượng bán ra</th>
+                    <th scope="col">Tổng số lượng tồn</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td id="tongtaikhoan">6</td>
+                        <td id="tonghang">2</td>
+                        <td id="tongloai">3</td>
+                        <td id="soluongsp">25</td>
+                        <td id="soluotxem">110</td>
+                        <td id="tongbanra">37</td>
+                        <td id="soluongton">368</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <canvas id="thongkechung" width="800" height="450"></canvas>
+
+            <h6>Bảng thống kê số lượng sản phẩm bán ra của 3 loại sản phẩm sen đá, xương rồng, tiểu cảnh</h6>
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                    <th scope="col">Sen đá</th>
+                    <th scope="col">Xương rồng</th>
+                    <th scope="col">Tiểu cảnh</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td id="senda">20</td>
+                        <td id="xuongrong">15</td>
+                        <td id="tieucanh">2</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <canvas id="pie-chart" width="800" height="450"></canvas>
+        </div>
+    </div>
+    <footer role="contentinfo">
+        <p>Nhóm 12: 1660063 - 1660127 - 1660151 caycanhstore &copy; 2018</p>
+    </footer>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="js/admin.js" type="text/javascript" charset="utf-8" async defer></script>
+<script src="js/chart.js" type="text/javascript" charset="utf-8" async defer></script>
+
+</body>
+</html>
